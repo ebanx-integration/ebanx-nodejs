@@ -8,7 +8,7 @@ Installation
 
 ### npm
 
-`npm install ebanx
+npm install ebanx
 
 Usage
 ---------
@@ -40,7 +40,7 @@ Usage
     * ebanx.token()
     * ebanx.zipcode()
 
-#Exemplos:
+#Examples:
 
 ```javascript
 
@@ -54,13 +54,15 @@ Usage
     ebanx.testMode = true;
 
     //Creating new checkout payment
+
+    var code = new Date(); 
     var params = {
       currency_code       : 'USD',
       'amount'            : '22.00',
       'name'              : 'Jose da Silva',
       'email'             : 'jose@example.org',
       'payment_type_code' : '_all',
-      'merchant_payment_code' : 'examplecode123'
+      'merchant_payment_code' : code.getUTCMinutes() + code.getUTCMilliseconds() //this creates a unique code, required for creating the payment
 
     };
 
