@@ -14,7 +14,8 @@ Usage
 ---------
 ```javascript
     //Require the module
-    var ebanx, ebanxMod;
+    var ebanx;
+    var ebanxMod;
     ebanxMod = require('ebanx');
     ebanx = new ebanxMod();
 
@@ -35,7 +36,7 @@ Usage
     * ebanx.print()
     * ebanx.query()
     * ebanx.refund()
-    * ebanx.refund_or_cancel()
+    * ebanx.refundOrCancel()
     * ebanx.request()
     * ebanx.token()
     * ebanx.zipcode()
@@ -73,5 +74,6 @@ Usage
 ```
 
 ## Changelog
+* **0.1.1**: Structured Client code.
 * **0.1.0**: added Direct and Token operations.
 * **0.0.1**: beta release.
