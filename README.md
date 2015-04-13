@@ -1,6 +1,6 @@
 EBANX NodeJs Module
 ==============
-EBANX is the market leader in e-commerce payment solutions for International Merchants selling online to Brazil. This library enables you to integrate EBANX with any PHP application.
+EBANX is the market leader in e-commerce payment solutions for International Merchants selling online to Brazil. This module enables you to integrate EBANX with NodeJs.
 
 
 Installation
@@ -62,8 +62,8 @@ Usage
       'name'              : 'Jose da Silva',
       'email'             : 'jose@example.org',
       'payment_type_code' : '_all',
-      'merchant_payment_code' : code.getUTCMinutes() + code.getUTCMilliseconds() //this creates a unique code, required for creating the payment
-
+      'merchant_payment_code' : 
+        code.getUTCMinutes() + code.getUTCMilliseconds() //this creates a unique code
     };
 
     ebanx.request(params, function(reply) {
