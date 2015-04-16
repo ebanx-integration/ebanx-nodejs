@@ -28,7 +28,8 @@ Usage
     *integrationKey: your integration key. It will be different in test and production modes.
     *testMode: enable or disable the test mode. The default value is _true_.
 
-    To create a new API request, just call one of the following functions on the ebanx object and supply it with the request parameters:
+    To create a new API request, just call one of the following functions 
+    on the ebanx object and supply it with the request parameters:
     * ebanx.cancel()
     * ebanx.capture()
     * ebanx.direct()
@@ -63,8 +64,7 @@ Usage
       'name'              : 'Jose da Silva',
       'email'             : 'jose@example.org',
       'payment_type_code' : '_all',
-      'merchant_payment_code' : 
-        code.getUTCMinutes() + code.getUTCMilliseconds() //this creates a unique code
+      'merchant_payment_code' : "example123" //must be unique
     };
 
     ebanx.request(params, function(reply) {
