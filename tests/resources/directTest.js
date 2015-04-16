@@ -28,33 +28,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-function capture(params, callback) {
-  var client = require("../http/Client");
-  var req = require("requestify");
-  var config = require("../Utils");
-  var method = "GET";
-  var uri = "ws/capture";
-  
-  var validator = require("./validator");
+var test = require('nodeunit');
+var ebanx = require('../../lib/ebanx');
 
-  validator.params(params);
-  validator.validatePresenceOr("hash", "merchant_payment_code");
+var eb = ebanx();
+eb.integrationKey = "1231000";
+eb.testMode = true;
 
-  var conf = new config(this.integrationKey,this.testMode);
-
-  var options = {
-    url : conf.getEndPoint(),
-    uri : uri,
-    method : method,
-    params : {
-      integration_key : conf.getIntegrationKey(),
-      hash : params.hash
-    }
-  };
-
-  client.send(options, function(reply) {
-    callback (reply);
-  });
+var direct = {
+	name : "carlos test",
+	email : "carlos@test.com",
+	birth_date : "12/04/1979",
+	document : "853.513.468.93",
+	address : "Rua e",
+	street_number : "1040",
+	city : "Curitiba",
+	state : "PR",
+	zipcode : "82530000",
+	country : "br",
+	phone_number : "32329913",
+	payment_type_code : "itau",
+	merchant_payment_code : "123141dafefesf",
+	currency_code : "BRL",
+	amount_total : 423.00
 }
 
-module.exports = capture;
+exports.testDirect = function(test){
+  eb.direct (direct, function(reply) {
+    test.equal (typeof(direct), typeof(reply));
+    test.equal (reply.hasOwnProperty("status") , true);
+    test.done();
+  });
+};

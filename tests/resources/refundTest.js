@@ -28,33 +28,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-function capture(params, callback) {
-  var client = require("../http/Client");
-  var req = require("requestify");
-  var config = require("../Utils");
-  var method = "GET";
-  var uri = "ws/capture";
-  
-  var validator = require("./validator");
+var test = require('nodeunit');
+var ebanx = require('../../lib/ebanx');
 
-  validator.params(params);
-  validator.validatePresenceOr("hash", "merchant_payment_code");
+var eb = ebanx();
+eb.integrationKey = "1231000";
+eb.testMode = true;
 
-  var conf = new config(this.integrationKey,this.testMode);
+var refund = {
+	hash : "552c21d21c55dd815c92ca69d937603913f1e69153916b0f",
+    description : "Lorem ipsum dolor sit amet.",
+    amount : "1.00",
+    operation : "request"
+};
 
-  var options = {
-    url : conf.getEndPoint(),
-    uri : uri,
-    method : method,
-    params : {
-      integration_key : conf.getIntegrationKey(),
-      hash : params.hash
-    }
-  };
-
-  client.send(options, function(reply) {
-    callback (reply);
+exports.testRefund = function(test){
+  eb.refund (refund, function(reply) {
+    test.equal (typeof(refund), typeof(reply));
+    test.equal (reply.hasOwnProperty("status") , true);
+    test.done();
   });
-}
-
-module.exports = capture;
+};

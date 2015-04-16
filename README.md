@@ -74,6 +74,7 @@ Usage
 ```
 
 ## Changelog
+* **1.0.0**: Using Request Module. Added Test Cases
 * **0.2.1**: Added Validator module.
 * **0.1.1**: Structured Client code.
 * **0.1.0**: added Direct and Token operations.

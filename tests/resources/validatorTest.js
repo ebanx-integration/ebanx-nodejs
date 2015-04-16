@@ -28,33 +28,30 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-function capture(params, callback) {
-  var client = require("../http/Client");
-  var req = require("requestify");
-  var config = require("../Utils");
-  var method = "GET";
-  var uri = "ws/capture";
-  
-  var validator = require("./validator");
+var test = require('nodeunit');
+var validator = require('../../lib/resources/validator');
 
-  validator.params(params);
-  validator.validatePresenceOr("hash", "merchant_payment_code");
+exports.testValidator = function(test) {
 
-  var conf = new config(this.integrationKey,this.testMode);
-
-  var options = {
-    url : conf.getEndPoint(),
-    uri : uri,
-    method : method,
-    params : {
-      integration_key : conf.getIntegrationKey(),
-      hash : params.hash
+  var token = {
+    payment_type_code : "visa",
+    creditcard : {
+	  card_number : "4111111111111111",
+	  card_name : "eita teste",
+	  card_due_date : "10/2020",
+	  card_cvv : "123",
+	  levelThree : {
+	  	thisIsLevelThree : "Test"
+	  }
     }
-  };
+  }
 
-  client.send(options, function(reply) {
-    callback (reply);
-  });
-}
-
-module.exports = capture;
+  validator.params({hash : "LoremIpsum"});
+  test.assert(validator.validatePresence("hash"));
+  validator.params(token);
+  test.assert(validator.validatePresence("creditcard.card_number"));
+  test.assert(validator.validatePresence("creditcard.levelThree.thisIsLevelThree"));
+  validator.params("lock");
+  test.assert(validator.validatePresence("stock"));
+  test.done();
+};

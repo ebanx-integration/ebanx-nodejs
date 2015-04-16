@@ -28,33 +28,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-function capture(params, callback) {
-  var client = require("../http/Client");
-  var req = require("requestify");
-  var config = require("../Utils");
-  var method = "GET";
-  var uri = "ws/capture";
-  
-  var validator = require("./validator");
+var test = require('nodeunit');
+var ebanx = require('../../lib/ebanx');
 
-  validator.params(params);
-  validator.validatePresenceOr("hash", "merchant_payment_code");
+var eb = ebanx();
+eb.integrationKey = "1231000";
+eb.testMode = true;
 
-  var conf = new config(this.integrationKey,this.testMode);
+var creditcard = {
+  payment_type_code : "visa",
+  creditcard : {
+    card_number : "4111111111111111",
+    card_name : "Jose da Silva",
+    card_due_date : "10/2018",
+    card_cvv : "123"
+  }
+};
 
-  var options = {
-    url : conf.getEndPoint(),
-    uri : uri,
-    method : method,
-    params : {
-      integration_key : conf.getIntegrationKey(),
-      hash : params.hash
-    }
+exports.testToken = function(test){
+  function() {
+    eb.token (creditcard, function(reply) {
+      test.equal (typeof(hash), typeof(reply));
+      test.equal (reply.hasOwnProperty("status") , true);
+    });
   };
-
-  client.send(options, function(reply) {
-    callback (reply);
-  });
-}
-
-module.exports = capture;
+};
