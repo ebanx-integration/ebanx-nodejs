@@ -77,6 +77,7 @@ Usage
 ```
 
 ## Changelog
+* **1.1.1**: Saved integration_key on file for tests
 * **1.1.0**: Implemented error first callbacks
 * **1.0.0**: Using Request Module. Added Test Cases
 * **0.2.1**: Added Validator module.

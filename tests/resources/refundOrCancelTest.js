@@ -30,9 +30,13 @@
 
 var test = require('nodeunit');
 var ebanx = require('../../lib/ebanx');
+var fs = require("fs");
+var filename = "../integration_key";
+
+var integration_key = fs.readFileSync(filename, "utf8");
 
 var eb = ebanx();
-eb.integrationKey = "1231000";
+eb.integrationKey = integration_key;
 eb.testMode = true;
 
 var refund = {

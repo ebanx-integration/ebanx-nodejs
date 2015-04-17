@@ -30,9 +30,13 @@
 
 var test = require('nodeunit');
 var ebanx = require('../../lib/ebanx');
+var fs = require("fs");
+var filename = "../integration_key";
+
+var integration_key = fs.readFileSync(filename, "utf8");
 
 var eb = ebanx();
-eb.integrationKey = "1231000";
+eb.integrationKey = integration_key;
 eb.testMode = true;
 
 var hash = {hash : "552c21d21c55dd815c92ca69d937603913f1e69153916b0f"};
@@ -40,9 +44,8 @@ var hash = {hash : "552c21d21c55dd815c92ca69d937603913f1e69153916b0f"};
 var merchant_payment_code = {merchant_payment_code : "1428955597"};
 
 exports.testCapture = function(test){
-  function() {
     eb.capture (hash, function(reply) {
-      test.equal (typeof(hash), typeof(reply));
+      test.equal (typeof(eb), typeof(reply));
       test.equal (reply.hasOwnProperty("status") , true);
     });
 
@@ -51,5 +54,4 @@ exports.testCapture = function(test){
       test.equal (reply.hasOwnProperty("status") , true);
       test.done();
     });
-  };
 };
