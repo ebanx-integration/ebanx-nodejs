@@ -57,7 +57,6 @@ Usage
 
     //Creating new checkout payment
 
-    var code = new Date(); 
     var params = {
       currency_code       : 'USD',
       'amount'            : '22.00',
@@ -67,13 +66,18 @@ Usage
       'merchant_payment_code' : "example123" //must be unique
     };
 
-    ebanx.request(params, function(reply) {
-      console.log(reply);
+    ebanx.request(params, function(error, reply) {
+      if(error) {
+        console.log(error);
+      } else {
+        console.log(reply);
+      }
     });
     
 ```
 
 ## Changelog
+* **1.1.0**: Implemented error first callbacks
 * **1.0.0**: Using Request Module. Added Test Cases
 * **0.2.1**: Added Validator module.
 * **0.1.1**: Structured Client code.
