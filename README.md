@@ -20,8 +20,10 @@ Usage
     ebanx = new ebanxMod();
 
     //Configure the integration key and test mode
-    ebanx.integrationKey = "1231000";
-    ebanx.testMode = true;
+    ebanx.configure({
+      integrationKey : '1231000',
+      testMode : true
+    });
 ```
 
     You can change the following settings:
@@ -42,6 +44,11 @@ Usage
     * ebanx.token()
     * ebanx.zipcode()
 
+    You can check your settings by accessing the settings module:
+    * ebanx.settings
+    * ebanx.settings.integrationKey
+    * ebanx.settings.testMode
+
 #Examples:
 
 ```javascript
@@ -52,8 +59,10 @@ Usage
     ebanx = new ebanxMod();
     
     //Configuring the module
-    ebanx.integrationKey = "1231000";
-    ebanx.testMode = true;
+    ebanx.configure({
+      integrationKey : '1231000',
+      testMode : true
+    });
 
     //Creating new checkout payment
 
@@ -77,6 +86,7 @@ Usage
 ```
 
 ## Changelog
+* **1.2.0**: Refactored coding. Changed Config module.
 * **1.1.2**: Corrected double params in certain requests. Corrected Client module.
 * **1.1.1**: Saved integration_key on file for tests.
 * **1.1.0**: Implemented error first callbacks.
