@@ -86,6 +86,7 @@ Usage
 ```
 
 ## Changelog
+* **1.2.3**: Changed require capital letter
 * **1.2.2**: Added validation on "testMode".
 * **1.2.1**: Calling Config module in Client only.
 * **1.2.0**: Refactored coding. Changed Config module.
