@@ -86,6 +86,7 @@ Usage
 ```
 
 ## Changelog
+* **1.2.1**: Calling Config module in Client only.
 * **1.2.0**: Refactored coding. Changed Config module.
 * **1.1.2**: Corrected double params in certain requests. Corrected Client module.
 * **1.1.1**: Saved integration_key on file for tests.
