@@ -93,6 +93,7 @@ Usage
 ```
 
 ## Changelog
+* **1.2.5**: Changed require capital letter for Validator
 * **1.2.4**: Corrected unit testings
 * **1.2.3**: Changed require capital letter
 * **1.2.2**: Added validation on "testMode".
