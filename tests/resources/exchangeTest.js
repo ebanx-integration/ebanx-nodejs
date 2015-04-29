@@ -28,24 +28,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var test = require('nodeunit');
+var utils = require('../../lib/Config');
 var ebanx = require('../../lib/ebanx');
-var fs = require("fs");
-var filename = "../integration_key";
-
-var integration_key = fs.readFileSync(filename, "utf8");
-
 var eb = ebanx();
-eb.integrationKey = integration_key;
-eb.testMode = true;
 
-var currency = {currency_code : "USD"};
+eb.configure({
+  integrationKey : "integration_key",
+  testMode : true
+});
+
+utils.httpClient = "Mock";
+
+var currency = {currency_code : "USD", currency_base : "BRL"};
 
 exports.testExchange = function(test){
-    eb.exchange (currency, function(reply) {
-      test.equal (typeof(currency), typeof(reply));
-      test.equal (reply.hasOwnProperty("status") , true);
-      test.equal (reply.currency_rate.code , "USD");
-      test.done();
-    });
+  eb.exchange (currency, function(err, reply) {
+    test.equal ("object", typeof(reply));
+    test.equal (reply.method,"GET");
+    test.equal (reply.uri,"ws/exchange");
+    test.equal (reply.params.currency_code , currency.currency_code);
+    test.equal (reply.params.currency_base , currency.currency_base);
+    test.done();
+  });
+};
+
+exports.testExchangeCode = function(test){
+  eb.exchange (currency, function(err, reply) {
+    test.equal (reply.params.currency_code , currency.currency_code);
+    test.done();
+  });
+};
+
+exports.testExchangeBase = function(test){
+  eb.exchange (currency, function(err, reply) {
+    test.equal (reply.params.currency_base , currency.currency_base);
+    test.done();
+  });
 };

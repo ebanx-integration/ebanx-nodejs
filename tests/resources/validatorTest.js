@@ -28,30 +28,27 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var test = require('nodeunit');
-var validator = require('../../lib/resources/validator');
+var validator = require('../../lib/resources/Validator');
 
 exports.testValidator = function(test) {
 
   var token = {
     payment_type_code : "visa",
     creditcard : {
-	  card_number : "4111111111111111",
-	  card_name : "eita teste",
-	  card_due_date : "10/2020",
-	  card_cvv : "123",
-	  levelThree : {
-	  	thisIsLevelThree : "Test"
-	  }
+	    card_number : "4111111111111111",
+	    card_name : "eita teste",
+	    card_due_date : "10/2020",
+	    card_cvv : "123",
+	    levelThree : {
+	  	  thisIsLevelThree : "Test"
+	    }
     }
   }
 
-  validator.params({hash : "LoremIpsum"});
-  test.assert(validator.validatePresence("hash"));
-  validator.params(token);
-  test.assert(validator.validatePresence("creditcard.card_number"));
-  test.assert(validator.validatePresence("creditcard.levelThree.thisIsLevelThree"));
-  validator.params("lock");
-  test.assert(validator.validatePresence("stock"));
+  validator.params = {hash : "LoremIpsum"};
+  test.equal(validator.validatePresence("hash"), true);
+  validator.params = token;
+  test.equal(validator.validatePresence("creditcard.card_number"), true);
+  test.equal(validator.validatePresence("creditcard.levelThree.thisIsLevelThree"), true);
   test.done();
 };

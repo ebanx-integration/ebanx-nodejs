@@ -28,16 +28,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var test = require('nodeunit');
+var utils = require('../../lib/Config');
 var ebanx = require('../../lib/ebanx');
-var fs = require("fs");
-var filename = "../integration_key";
-
-var integration_key = fs.readFileSync(filename, "utf8");
-
 var eb = ebanx();
-eb.integrationKey = integration_key;
-eb.testMode = true;
+
+eb.configure({
+  integrationKey : "integration_key",
+  testMode : true
+});
+
+utils.httpClient = "Mock";
 
 var creditcard = {
   payment_type_code : "visa",
@@ -50,10 +50,45 @@ var creditcard = {
 };
 
 exports.testToken = function(test){
-  function() {
-    eb.token (creditcard, function(reply) {
-      test.equal (typeof(hash), typeof(reply));
-      test.equal (reply.hasOwnProperty("status") , true);
-    });
-  };
+  eb.token (creditcard, function(err, reply) {
+    test.equal ("object", typeof(reply));
+    test.equal (reply.method,"POST");
+    test.equal (reply.uri,"ws/token");
+    test.done();
+  });
+};
+
+exports.testTokenParamsPaymentTypeCode = function(test){
+  eb.token (creditcard, function(err, reply) {
+    test.equal (reply.params.payment_type_code, creditcard.payment_type_code);
+    test.done();
+  });
+};
+
+exports.testTokenParamsCreditCardNumber = function(test){
+  eb.token (creditcard, function(err, reply) {
+    test.equal (reply.params.creditcard.card_number, creditcard.creditcard.card_number);
+    test.done();
+  });
+};
+
+exports.testTokenParamsCreditCardName = function(test){
+  eb.token (creditcard, function(err, reply) {
+    test.equal (reply.params.creditcard.card_name, creditcard.creditcard.card_name);
+    test.done();
+  });
+};
+
+exports.testTokenParamsCreditCardDueDate = function(test){
+  eb.token (creditcard, function(err, reply) {
+    test.equal (reply.params.creditcard.card_due_date, creditcard.creditcard.card_due_date);
+    test.done();
+  });
+};
+
+exports.testTokenParamsCreditCardCvv = function(test){
+  eb.token (creditcard, function(err, reply) {
+    test.equal (reply.params.creditcard.card_cvv, creditcard.creditcard.card_cvv);
+    test.done();
+  });
 };

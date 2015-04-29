@@ -28,32 +28,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var test = require('nodeunit');
+var utils = require('../../lib/Config');
 var ebanx = require('../../lib/ebanx');
-var fs = require("fs");
-var filename = "../integration_key";
-
-var integration_key = fs.readFileSync(filename, "utf8");
-
 var eb = ebanx();
-eb.integrationKey = integration_key;
-eb.testMode = true;
+
+eb.configure({
+  integrationKey : "integration_key",
+  testMode : true
+});
+
+utils.httpClient = "Mock";
 
 var hash = {hash : "552c21d21c55dd815c92ca69d937603913f1e69153916b0f"};
 
 var merchant_payment_code = {merchant_payment_code : "1428955597"};
 
-exports.testQuery = function(test){
-  function() {
-    eb.query (hash, function(reply) {
-      test.equal (typeof(hash), typeof(reply));
-      test.equal (reply.hasOwnProperty("status") , true);
-    });
+exports.testQuery = function(test) {
+  eb.query (hash, function(err, reply) {
+    test.equal ("object", typeof(reply));
+    test.equal (reply.method,"GET");
+    test.equal (reply.uri,"ws/query");
+    test.done();
+  });
+};
 
-    eb.query (merchant_payment_code, function(reply) {
-      test.equal (typeof(hash), typeof(reply));
-      test.equal (reply.hasOwnProperty("status") , true);
-      test.done();
-    });
-  };
+exports.testQueryWithHash = function(test) {
+  eb.query (hash, function(err, reply) {
+    test.equal (reply.params.hash, hash.hash)
+    test.done();
+  });
+};
+
+exports.testQueryWithMerchantPaymentCode = function(test) {
+  eb.query (merchant_payment_code, function(err, reply) {
+    test.equal (reply.params.merchant_payment_code, merchant_payment_code.merchant_payment_code)
+    test.done();
+  });
 };

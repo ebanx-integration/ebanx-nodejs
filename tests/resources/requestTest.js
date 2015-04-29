@@ -28,16 +28,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var test = require('nodeunit');
+var utils = require('../../lib/Config');
 var ebanx = require('../../lib/ebanx');
-var fs = require("fs");
-var filename = "../integration_key";
-
-var integration_key = fs.readFileSync(filename, "utf8");
-
 var eb = ebanx();
-eb.integrationKey = integration_key;
-eb.testMode = true;
+
+eb.configure({
+  integrationKey : "integration_key",
+  testMode : true
+});
+
+utils.httpClient = "Mock";
 
 request = {
 	name : "carlos test",
@@ -46,13 +46,63 @@ request = {
 	payment_type_code : "boleto",
 	merchant_payment_code : "123141dafefesf",
 	currency_code : "BRL",
-	amount_total : 423.00
+	amount : 423.00
 }
 
 exports.testRequest = function(test){
-  eb.request (direct, function(reply) {
-    test.equal (typeof(request), typeof(reply));
-    test.equal (reply.hasOwnProperty("status") , true);
+  eb.request (request, function(err, reply) {
+    test.equal ("object", typeof(reply));
+    test.equal (reply.method,"POST");
+    test.equal (reply.uri,"ws/request");
+    test.done();
+  });
+};
+
+exports.testRequestParamName = function(test){
+  eb.request (request, function(err, reply) {
+    test.equal (reply.params.name, request.name);
+    test.done();
+  });
+};
+
+exports.testRequestParamEmail = function(test){
+  eb.request (request, function(err, reply) {
+    test.equal (reply.params.email, request.email);
+    test.done();
+  });
+};
+
+exports.testRequestParamCountry = function(test){
+  eb.request (request, function(err, reply) {
+    test.equal (reply.params.country, request.country);
+    test.done();
+  });
+};
+
+exports.testRequestParamPaymentTypeCode = function(test){
+  eb.request (request, function(err, reply) {
+    test.equal (reply.params.payment_type_code, request.payment_type_code);
+    test.done();
+  });
+};
+
+exports.testRequestParamMerchantPaymentCode = function(test){
+  eb.request (request, function(err, reply) {
+    test.equal (reply.params.merchant_payment_code, request.merchant_payment_code);
+    test.done();
+  });
+};
+
+exports.testRequestParamCurrencyCode = function(test){
+  eb.request (request, function(err, reply) {
+    test.equal (reply.params.currency_code, request.currency_code);
+    test.done();
+  });
+};
+
+exports.testRequestParamAmount = function(test){
+  eb.request (request, function(err, reply) {
+    test.equal (reply.params.amount, request.amount);
     test.done();
   });
 };

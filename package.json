@@ -2,18 +2,25 @@
   "author": "Heitor Dolinski <heitor@ebanx.com> (http://www.ebanx.com/)",
   "license": "ISC",
   "name": "ebanx",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "homepage": "https://github.com/ebanx/ebanx-nodejs",
   "description": "Provides access to EBANX API through HTTP requests",
   "main": "index.js",
   "repository" :{
     "type": "git",
-    "url": "https://github.com/ebanx/ebanx-nodejs"
+    "url": "https://github.com/hdolinski/ebanx-nodejs"
   },
   "dependencies": {
     "request": "2.*.*"
   },
-   "keywords": [
+  "devDependencies": {
+    "nodeunit": "*"
+  },
+  "scripts": {
+    "test": "nodeunit tests/",
+    "test": "nodeunit tests/resources/"
+  },
+  "keywords": [
     "ebanx",
     "payment gateway",
     "boleto bancario"

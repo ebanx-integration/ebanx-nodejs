@@ -28,16 +28,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var test = require('nodeunit');
+var utils = require('../../lib/Config');
 var ebanx = require('../../lib/ebanx');
-var fs = require("fs");
-var filename = "../integration_key";
-
-var integration_key = fs.readFileSync(filename, "utf8");
-
 var eb = ebanx();
-eb.integrationKey = integration_key;
-eb.testMode = true;
+
+eb.configure({
+  integrationKey : "integration_key",
+  testMode : true
+});
+
+utils.httpClient = "Mock";
 
 var refund = {
 	hash : "552c21d21c55dd815c92ca69d937603913f1e69153916b0f",
@@ -45,9 +45,12 @@ var refund = {
 };
 
 exports.testRefundOrCancel = function(test){
-  eb.refundOrCancel (refund, function(reply) {
-    test.equal (typeof(refund), typeof(reply));
-    test.equal (reply.hasOwnProperty("status") , true);
+  eb.refundOrCancel (refund, function(err, reply) {
+    test.equal ("object", typeof(reply));
+    test.equal (reply.method,"POST");
+    test.equal (reply.uri,"ws/refundOrCancel");
+    test.equal (reply.params.hash , refund.hash);
+    test.equal (reply.params.description , refund.description);
     test.done();
   });
 };
