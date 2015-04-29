@@ -9,6 +9,7 @@ Continuous integration status:
 NPM status:
 
 [![NPM version](https://badge.fury.io/js/ebanx.svg)](https://badge.fury.io/js/ebanx)
+[![Dependency Status](https://david-dm.org/ebanx/ebanx-nodejs.svg)](https://david-dm.org/ebanx/ebanx-nodejs)
 
 Installation
 ----------
@@ -93,6 +94,7 @@ Usage
 ```
 
 ## Changelog
+* **1.2.6**: Added dependency badge
 * **1.2.5**: Changed require capital letter for Validator
 * **1.2.4**: Corrected unit testings
 * **1.2.3**: Changed require capital letter
