@@ -28,30 +28,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-function print(params, callback) {
-  var client = require("../http/Client");
-  var validator = require("./Validator");
-  var method = "GET";
-  var uri = "print";
+var ebanx = require('../lib/ebanx');
+var utils = require('../lib/Config');
+var eb = ebanx();
 
-  validator.params = params;
-  validator.validatePresence("hash");
+eb.configure({
+	integrationKey : "integration_key",
+	testMode : true
+});
 
-  var options = {
-    uri : uri,
-    method : method,
-    params : {
-      hash : params.hash
-    }
-  };
+var should = require('chai').should();
+var expect = require('chai').expect;
 
-  client.send(options, function(err , reply) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null,reply);
-    }
-  });
-}
+describe('Configuration', function() {
+  it('Integration Key should be setted', function(done) {
+    expect(eb.settings.integrationKey).to.be.equal(utils.getIntegrationKey());
+    done();  	
+  })
 
-module.exports = print;
+  it('Test Mode Should be Setted', function(done) {
+    expect(eb.settings.testMode).to.be.equal(utils.getTestMode());
+    done();   
+  })
+
+  it('EndPoint return for testMode false and true', function(done) {
+    expect(utils.getEndPoint()).to.be.equal("https://sandbox.ebanx.com/");
+    eb.configure({
+      testMode : false
+    })
+    expect(utils.getEndPoint()).to.be.equal("https://api.ebanx.com/");
+    done();   
+  })
+});

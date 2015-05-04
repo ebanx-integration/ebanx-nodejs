@@ -2,11 +2,11 @@
   "author": "Heitor Dolinski <heitor@ebanx.com> (http://www.ebanx.com/)",
   "license": "ISC",
   "name": "ebanx",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "homepage": "https://github.com/ebanx/ebanx-nodejs",
-  "description": "Provides access to EBANX API through HTTP requests",
+  "description": "Provides access to EBANX API",
   "main": "index.js",
-  "repository" :{
+  "repository": {
     "type": "git",
     "url": "https://github.com/ebanx/ebanx-nodejs"
   },
@@ -14,12 +14,15 @@
     "request": "2.*.*"
   },
   "devDependencies": {
-    "nodeunit": "*"
+    "chai": "2.3.0",
+    "coveralls": "2.10.0",
+    "mocha": "^2.2.4",
+    "istanbul": "0.3.5"
   },
   "scripts": {
-    "test": "nodeunit tests/",
-    "test": "nodeunit tests/resources/"
-  },
+    "test": "./node_modules/mocha/bin/mocha --recursive ./tests",
+    "test-travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./tests"
+ },
   "keywords": [
     "ebanx",
     "payment gateway",
@@ -27,6 +30,6 @@
   ],
   "readmeFilename": "README.md",
   "bugs": {
-    "url" : "https://github.com/ebanx/ebanx-nodejs/issues"
+    "url": "https://github.com/ebanx/ebanx-nodejs/issues"
   }
 }

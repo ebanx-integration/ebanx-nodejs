@@ -28,30 +28,42 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-function print(params, callback) {
-  var client = require("../http/Client");
-  var validator = require("./Validator");
-  var method = "GET";
-  var uri = "print";
+var utils = require('../lib/Config');
+var ebanx = require('../lib/ebanx');
+var eb = ebanx();
 
-  validator.params = params;
-  validator.validatePresence("hash");
+eb.configure({
+  integrationKey : "integration_key",
+  testMode : true
+});
 
-  var options = {
-    uri : uri,
-    method : method,
-    params : {
-      hash : params.hash
-    }
-  };
+eb.settings.usingHttp = false;
 
-  client.send(options, function(err , reply) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null,reply);
-    }
-  });
-}
+var zipcode = {zipcode : "82530000"};
 
-module.exports = print;
+var should = require('chai').should();
+var expect = require('chai').expect;
+
+describe('Zipcode Operation', function() {
+  eb.zipcode (zipcode, function(err, reply) {
+    it('Should return object', function(done) {
+      reply.should.be.an('object');
+      done();   
+    })
+    
+    it('Method should be GET', function(done) {
+      expect(reply.method).to.be.equal("GET");
+      done();
+    })
+
+    it('URI should point to ws/zipcode', function(done) {
+      expect(reply.uri).to.be.equal("ws/zipcode");
+      done();
+    })
+
+    it('Params must be zipcode', function(done) {
+      expect(reply.params).to.have.property("zipcode");
+      done();  
+    })
+  })
+});

@@ -28,30 +28,61 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-function print(params, callback) {
-  var client = require("../http/Client");
-  var validator = require("./Validator");
-  var method = "GET";
-  var uri = "print";
+var config = require('../lib/Config');
 
-  validator.params = params;
-  validator.validatePresence("hash");
+var hash = {hash : "552c21d21c55dd815c92ca69d937603913f1e69153916b0f"};
 
-  var options = {
-    uri : uri,
-    method : method,
-    params : {
-      hash : params.hash
+var should = require('chai').should();
+var expect = require('chai').expect;
+
+describe('HTTP Client test', function() {
+  var ebanx = require('../lib/ebanx');
+  var eb = ebanx();
+  
+  it('Should return error', function(done) {
+    
+    eb.configure({
+      integrationKey : "integration_key",
+      testMode : true
+    });
+
+    eb.settings.usingHttp = true;
+    eb.query (hash, function(err, reply) {
+      should.exist(err);
+      should.not.exist(reply); 
+    })
+    done();
+  })
+
+  it('Should return another error', function(done) {
+    eb.query (hash, function(err, reply) {
+      should.not.exist(reply); 
+    })
+    done();
+  })
+
+  it('Should test direct method', function(done) {
+    var direct = {
+      name : "carlos test",
+      email : "carlos@test.com",
+      birth_date : "12/04/1979",
+      document : "853.513.468.93",
+      address : "Rua e",
+      street_number : "1040",
+      city : "Curitiba",
+      state : "PR",
+      zipcode : "82530000",
+      country : "br",
+      phone_number : "32329913",
+      payment_type_code : "itau",
+      merchant_payment_code : "123141dafefesf",
+      currency_code : "BRL",
+      amount_total : 423.00
     }
-  };
-
-  client.send(options, function(err , reply) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null,reply);
-    }
-  });
-}
-
-module.exports = print;
+    eb.direct (direct, function(err, reply) {
+      console.log(err);
+      should.not.exist(reply); 
+    })
+    done();
+  })
+});

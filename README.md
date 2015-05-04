@@ -4,7 +4,7 @@ EBANX is the market leader in e-commerce payment solutions for International Mer
 
 Continuous integration status:
 
-[![Build Status](https://travis-ci.org/hdolinski/ebanx-nodejs.svg?branch=master)](https://travis-ci.org/hdolinski/ebanx-nodejs)
+[![Build Status](https://travis-ci.org/hdolinski/ebanx-nodejs.svg?branch=master)](https://travis-ci.org/hdolinski/ebanx-nodejs) [![Coverage Status](https://coveralls.io/repos/hdolinski/ebanx-nodejs/badge.svg?branch=master)](https://coveralls.io/r/hdolinski/ebanx-nodejs?branch=master)
 
 NPM status:
 
@@ -94,6 +94,7 @@ Usage
 ```
 
 ## Changelog
+* **1.2.7**: Adapted to Coveralls.
 * **1.2.6**: Added dependency badge
 * **1.2.5**: Changed require capital letter for Validator
 * **1.2.4**: Corrected unit testings
