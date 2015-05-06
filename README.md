@@ -94,6 +94,7 @@ Usage
 ```
 
 ## Changelog
+* **1.2.8**: Corrected Direct Debit. Added Business Person Type
 * **1.2.7**: Adapted to Coveralls.
 * **1.2.6**: Added dependency badge
 * **1.2.5**: Changed require capital letter for Validator
