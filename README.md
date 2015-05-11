@@ -1,4 +1,4 @@
-EBANX NodeJs Module https:
+EBANX NodeJs Module:
 ==============
 EBANX is the market leader in e-commerce payment solutions for International Merchants selling online to Brazil. This module enables you to integrate EBANX with NodeJs.
 
