@@ -28,56 +28,54 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-var config = require("../Config");
-var validator = require("../resources/Validator");
-var Client = function () {};
+var utils = require('../lib/Config');
+var ebanx = require('../lib/ebanx');
+var eb = ebanx();
 
-Client.prototype.send = function (options, callback) {
-  var url = config.getEndPoint() + options.uri;
-  var method = options.method;
+eb.configure({
+  integrationKey : "integration_key",
+  testMode : true
+});
 
-  if (!config.usingHttp) {
-    callback(null, options);
-  } else {
-    var req = require("request");
-    validator.validateConfig(config);
-    options.params.integration_key = config.integrationKey;
+eb.settings.usingHttp = false;
 
-    // If is Direct operation, change some parameters
-    if (options.direct) {
-      var request = { request_body : JSON.stringify(options.params)};
-
-      req({
-        url: url,
-        headers: {
-          'User-Agent': 'EBANX NodeJS Module Direct'
-        },
-        method: method,
-        form : request
-      }, function(error, response, body) {
-        if (error) {
-          throw new Error(error);
-        } else {
-          callback(null, body);
-        }
-      });
-    }	else {
-      req({
-        url: url,
-        headers: {
-          'User-Agent': 'EBANX NodeJS Module'
-        },
-        method: method,
-        qs : options.params
-      }, function(error, response, body) {
-        if (error) {
-          throw new Error(error);
-        } else {
-          callback(null, body);
-        }
-      });
-    }
-  }
+var direct = {
+  name : "Fabricas Branco Ltda.",
+  email : "fabricasbranco@example.com",
+  birth_date : "12/04/1979",
+  document : "01/03/1985",
+  address :"Rua E",
+  street_number : "1040",
+  city : "Maracanaú",
+  state : "CE",
+  zipcode : "61919-230",
+  country : "br",
+  person_type: "business",
+  responsible: {
+    name: "José Silva",
+    birth_date: "12/04/1979",
+    document: "853.513.468-93"
+  },
+  phone_number : "8522847035",
+  payment_type_code : "boleto",
+  merchant_payment_code : "0efa347229e",
+  currency_code : "BRL",
+  amount_total : "100.00"
 };
 
-module.exports = new Client();
+var should = require('chai').should();
+var expect = require('chai').expect;
+
+describe('Direct Operation Person Type', function() {
+  eb.direct (direct, function(err, reply) {
+    it('Should test person_type="business"', function(done) {
+      expect(reply.params.payment.person_type).to.be.equal("business");
+      done();   
+    })
+
+    it('Should test responsible object for person_type="business"', function(done) {
+      expect(reply.params.payment).to.have.property("responsible");
+      done();   
+    })
+  })
+});
