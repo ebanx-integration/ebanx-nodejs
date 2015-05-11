@@ -3,12 +3,12 @@
   "license": "ISC",
   "name": "ebanx",
   "version": "1.2.8",
-  "homepage": "https://github.com/ebanx/ebanx-nodejs",
+  "homepage": "https://github.com/ebanx-integration/ebanx-nodejs",
   "description": "Provides access to EBANX API",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ebanx/ebanx-nodejs"
+    "url": "https://github.com/ebanx-integration/ebanx-nodejs"
   },
   "dependencies": {
     "request": "2.*.*"
@@ -30,6 +30,6 @@
   ],
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/ebanx/ebanx-nodejs/issues"
+    "url": "https://github.com/ebanx-integration/ebanx-nodejs/issues"
   }
 }

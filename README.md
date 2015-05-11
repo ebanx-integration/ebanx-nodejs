@@ -4,12 +4,12 @@ EBANX is the market leader in e-commerce payment solutions for International Mer
 
 Continuous integration status:
 
-[![Build Status](https://travis-ci.org/hdolinski/ebanx-nodejs.svg?branch=master)](https://travis-ci.org/hdolinski/ebanx-nodejs) [![Coverage Status](https://coveralls.io/repos/hdolinski/ebanx-nodejs/badge.svg?branch=master)](https://coveralls.io/r/hdolinski/ebanx-nodejs?branch=master)
+[![Build Status](https://travis-ci.org/ebanx-integration/ebanx-nodejs.svg?branch=master)](https://travis-ci.org/ebanx-integration/ebanx-nodejs) [![Coverage Status](https://coveralls.io/repos/ebanx-integration/ebanx-nodejs/badge.svg?branch=master)](https://coveralls.io/r/ebanx-integration/ebanx-nodejs?branch=master)
 
 NPM status:
 
 [![NPM version](https://badge.fury.io/js/ebanx.svg)](https://badge.fury.io/js/ebanx)
-[![Dependency Status](https://david-dm.org/ebanx/ebanx-nodejs.svg)](https://david-dm.org/ebanx/ebanx-nodejs)
+[![Dependency Status](https://david-dm.org/ebanx-integration/ebanx-nodejs.svg)](https://david-dm.org/ebanx-integration/ebanx-nodejs)
 
 Installation
 ----------
