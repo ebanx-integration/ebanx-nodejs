@@ -27,9 +27,10 @@ describe('HTTP Client test', function() {
     
   })
 
-  it('Should return another error', function(done) {
+  it('Should return error from API', function(done) {
     eb.query (hash, function(err, reply) {
-      should.not.exist(reply);
+      var reply = JSON.parse(reply);
+      expect(reply.status).to.be.equal("ERROR");
       done();
     })
 
