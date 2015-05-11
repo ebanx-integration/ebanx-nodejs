@@ -7,3 +7,7 @@ script:
   - "npm run-script test-travis"
 after_script:
   - "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  - codeclimate < ./coverage/lcov.info
+addons:
+  code_climate:
+    repo_token: 9caeb32a0d2ba7177b282a49c919a38beea51696fc3002c373ddc002794a8c3a
