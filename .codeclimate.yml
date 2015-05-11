@@ -1,0 +1,8 @@
+exclude_paths:
+- tests/*
+- LICENSE.md
+- package.json
+- .gitignore
+- .travis.yml
+- .npmignore
+- README.md
