@@ -15,7 +15,7 @@ NPM status:
 
 [![Shields](https://img.shields.io/badge/awesome-yes-brightgreen.svg)](http://shields.io/)
 Installation
-----------
+-----------
 
 ### npm
 
