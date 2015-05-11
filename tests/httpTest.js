@@ -12,7 +12,7 @@ describe('HTTP Client test', function() {
   var ebanx = require('../lib/ebanx');
   var eb = ebanx();
   
-  it('Should return error', function(done) {
+  it('Should return response', function(done) {
     
     eb.configure({
       integrationKey : "integration_key",
@@ -21,17 +21,18 @@ describe('HTTP Client test', function() {
 
     eb.settings.usingHttp = true;
     eb.query (hash, function(err, reply) {
-      should.exist(err);
-      should.not.exist(reply); 
+      should.exist(reply);
+      done();
     })
-    done();
+    
   })
 
   it('Should return another error', function(done) {
     eb.query (hash, function(err, reply) {
-      should.not.exist(reply); 
+      should.not.exist(reply);
+      done();
     })
-    done();
+
   })
 
   it('Should test direct method', function(done) {
@@ -53,9 +54,9 @@ describe('HTTP Client test', function() {
       amount_total : 423.00
     }
     eb.direct (direct, function(err, reply) {
-      console.log(err);
-      should.not.exist(reply); 
+      should.not.exist(err);
+      should.exist(reply);
+      done();
     })
-    done();
   })
 });

@@ -22,25 +22,25 @@ describe('Validator module', function() {
     }
   }
   
-  it('Should have hash', function(done) {
+  it('Should have hash (simple level)', function(done) {
     validator.params = {hash : "LoremIpsum"};
     expect(validator.validatePresence("hash")).to.be.ok;
     done();  
   })
   
-  it('Should have creditcard.card_number', function(done) {
+  it('Should have creditcard.card_number (level two)', function(done) {
     validator.params = token;
     expect(validator.validatePresence("creditcard.card_number")).to.be.ok;
     done();
   })
   
-  it('Should have creditcard.levelThree.thisIsLevelThree', function(done) {
+  it('Should have creditcard.levelThree.thisIsLevelThree (level three)', function(done) {
     validator.params = token;
     expect(validator.validatePresence("creditcard.levelThree.thisIsLevelThree")).to.be.ok;
     done();
   })
 
-  it('Should have creditcard.levelThree.thisIsLevelThree.yetAnotherLevel', function(done) {
+  it('Should have creditcard.levelThree.thisIsLevelThree.yetAnotherLevel (level four)', function(done) {
     validator.params = token;
     expect(validator.validatePresence("creditcard.levelThree.thisIsLevelThree.yetAnotherLevel")).to.be.ok;
     done();
