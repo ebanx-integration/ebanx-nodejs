@@ -14,6 +14,7 @@ NPM status:
 
 
 [![Shields](https://img.shields.io/badge/awesome-yes-brightgreen.svg)](http://shields.io/)
+
 Installation
 -----------
 
@@ -24,17 +25,17 @@ npm install ebanx
 Usage
 ---------
 ```javascript
-  //Require the module
-  var ebanx;
-  var ebanxMod;
-  ebanxMod = require('ebanx');
-  ebanx = new ebanxMod();
+//Require the module
+var ebanx;
+var ebanxMod;
+ebanxMod = require('ebanx');
+ebanx = new ebanxMod();
 
-  //Configure the integration key and test mode
-  ebanx.configure({
-    integrationKey : '1231000',
-    testMode : true
-  });
+//Configure the integration key and test mode
+ebanx.configure({
+  integrationKey : '1231000',
+  testMode : true
+});
 ```
 
     You can change the following settings:
@@ -65,39 +66,40 @@ Usage
 
 ```javascript
 
-    var ebanx;
-    var ebanxMod;
-    ebanxMod = require('ebanx');
-    ebanx = new ebanxMod();
+var ebanx;
+var ebanxMod;
+ebanxMod = require('ebanx');
+ebanx = new ebanxMod();
     
-    //Configuring the module
-    ebanx.configure({
-      integrationKey : '1231000',
-      testMode : true
-    });
+//Configuring the module
+ebanx.configure({
+  integrationKey : '1231000',
+  testMode : true
+});
 
-    //Creating new checkout payment
+//Creating new checkout payment
 
-    var params = {
-      currency_code       : 'USD',
-      'amount'            : '22.00',
-      'name'              : 'Jose da Silva',
-      'email'             : 'jose@example.org',
-      'payment_type_code' : '_all',
-      'merchant_payment_code' : "example123" //must be unique
-    };
+var params = {
+  currency_code       : 'USD',
+  'amount'            : '22.00',
+  'name'              : 'Jose da Silva',
+  'email'             : 'jose@example.org',
+  'payment_type_code' : '_all',
+  'merchant_payment_code' : "example123" //must be unique
+};
 
-    ebanx.request(params, function(error, reply) {
-      if(error) {
-        console.log(error);
-      } else {
-        console.log(reply);
-      }
-    });
+ebanx.request(params, function(error, reply) {
+  if(error) {
+    console.log(error);
+  } else {
+    console.log(reply);
+  }
+});
     
 ```
 
 ## Changelog
+* **1.4.1**: Corrected indentation
 * **1.4.0**: Added documentBalance operation
 * **1.3.0**: Codeclimate integration
 * **1.2.8**: Corrected Direct Debit. Added Business Person Type
