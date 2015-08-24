@@ -24,17 +24,17 @@ npm install ebanx
 Usage
 ---------
 ```javascript
-    //Require the module
-    var ebanx;
-    var ebanxMod;
-    ebanxMod = require('ebanx');
-    ebanx = new ebanxMod();
+  //Require the module
+  var ebanx;
+  var ebanxMod;
+  ebanxMod = require('ebanx');
+  ebanx = new ebanxMod();
 
-    //Configure the integration key and test mode
-    ebanx.configure({
-      integrationKey : '1231000',
-      testMode : true
-    });
+  //Configure the integration key and test mode
+  ebanx.configure({
+    integrationKey : '1231000',
+    testMode : true
+  });
 ```
 
     You can change the following settings:
@@ -46,6 +46,7 @@ Usage
     * ebanx.cancel()
     * ebanx.capture()
     * ebanx.direct()
+    * ebanx.documentBalance()
     * ebanx.exchange()
     * ebanx.print()
     * ebanx.query()
@@ -97,6 +98,7 @@ Usage
 ```
 
 ## Changelog
+* **1.4.0**: Added documentBalance operation
 * **1.3.0**: Codeclimate integration
 * **1.2.8**: Corrected Direct Debit. Added Business Person Type
 * **1.2.7**: Adapted to Coveralls.
