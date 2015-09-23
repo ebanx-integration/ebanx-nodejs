@@ -35,7 +35,7 @@ describe('Zipcode Operation', function() {
     })
 
     it('Params must be zipcode', function(done) {
-      expect(reply.params).to.have.property("zipcode");
+      expect(reply).to.have.property("zipcode");
       done();  
     })
   })

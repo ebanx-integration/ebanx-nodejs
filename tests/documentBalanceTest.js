@@ -36,12 +36,12 @@ describe('DocumentBalance Operation', function() {
     })
 
     it('Param must have currency_code', function(done) {
-      expect(reply.params).to.have.property("currency_code");
+      expect(reply).to.have.property("currency_code");
       done();  
     })
 
     it('Param must have document', function(done) {
-      expect(reply.params).to.have.property("document");
+      expect(reply).to.have.property("document");
       done();  
     })
   })

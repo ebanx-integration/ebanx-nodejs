@@ -44,27 +44,27 @@ describe('Token Operation', function() {
     })
 
     it('Params should have payment_type_code', function(done) {
-      expect(reply.params).to.have.property("payment_type_code");
+      expect(reply).to.have.property("payment_type_code");
       done();  
     })
 
     it('Params should have creditcard.card_number', function(done) {
-      expect(reply.params.creditcard).to.have.property("card_number");
+      expect(reply.creditcard).to.have.property("card_number");
       done();  
     })
 
     it('Params should have creditcard.card_name', function(done) {
-      expect(reply.params.creditcard).to.have.property("card_name");
+      expect(reply.creditcard).to.have.property("card_name");
       done();  
     })
 
     it('Params should have creditcard.card_due_date', function(done) {
-      expect(reply.params.creditcard).to.have.property("card_due_date");
+      expect(reply.creditcard).to.have.property("card_due_date");
       done();  
     })
 
     it('Params should have creditcard.card_cvv', function(done) {
-      expect(reply.params.creditcard).to.have.property("card_cvv");
+      expect(reply.creditcard).to.have.property("card_cvv");
       done();  
     })
   })

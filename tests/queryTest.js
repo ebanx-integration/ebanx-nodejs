@@ -38,7 +38,7 @@ describe('Query Operation With Hash', function() {
     })
 
     it('Params must be hash', function(done) {
-      expect(reply.params).to.have.property("hash");
+      expect(reply).to.have.property("hash");
       done();  
     })
   })
@@ -62,7 +62,7 @@ describe('Query Operation With Hash', function() {
     })
 
     it('Params must be merchant_payment_code', function(done) {
-      expect(reply.params).to.have.property("merchant_payment_code");
+      expect(reply).to.have.property("merchant_payment_code");
       done();  
     })
   })

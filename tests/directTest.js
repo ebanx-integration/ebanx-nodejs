@@ -13,22 +13,25 @@ eb.configure({
 eb.settings.usingHttp = false;
 
 var direct = {
-  name : "carlos test",
-  email : "carlos@test.com",
-  birth_date : "12/04/1979",
-  document : "853.513.468.93",
-  address : "Rua e",
-  street_number : "1040",
-  city : "Curitiba",
-  state : "PR",
-  zipcode : "82530000",
-  country : "br",
-  phone_number : "32329913",
-  payment_type_code : "itau",
-  merchant_payment_code : "123141dafefesf",
-  currency_code : "BRL",
-  amount_total : 423.00
-}
+  payment : {
+    name : "carlos test",
+    email : "carlos@test.com",
+    birth_date : "12/04/1979",
+    document : "853.513.468.93",
+    address : "Rua e",
+    street_number : "1040",
+    city : "Curitiba",
+    state : "PR",
+    zipcode : "82530000",
+    country : "br",
+    phone_number : "32329913",
+    payment_type_code : "itau",
+    merchant_payment_code : "123141dafefesf",
+    currency_code : "BRL",
+    amount_total : 423.00
+
+  }
+};
 
 var should = require('chai').should();
 var expect = require('chai').expect;
@@ -55,83 +58,78 @@ describe('Direct Operation Boleto', function() {
       done();  
     })
 
-    it('Param "mode" should be "full"', function(done) {
-      expect(reply.params.mode).to.be.equal("full");
-      done();  
-    })
-
     it('Param "currency_code" should be passed', function(done) {
-      expect(reply.params.payment.currency_code).to.be.equal(direct.currency_code);
+      expect(reply.payment.currency_code).to.be.equal(direct.payment.currency_code);
       done();  
     })
 
     it('Param "merchant_payment_code" should be passed', function(done) {
-      expect(reply.params.payment.merchant_payment_code).to.be.equal(direct.merchant_payment_code);
+      expect(reply.payment.merchant_payment_code).to.be.equal(direct.payment.merchant_payment_code);
       done();  
     })
 
     it('Param "phone_number" should be passed', function(done) {
-      expect(reply.params.payment.phone_number).to.be.equal(direct.phone_number);
+      expect(reply.payment.phone_number).to.be.equal(direct.payment.phone_number);
       done();  
     })
 
     it('Param "country" should be passed', function(done) {
-      expect(reply.params.payment.country).to.be.equal(direct.country);
+      expect(reply.payment.country).to.be.equal(direct.payment.country);
       done();  
     })
 
     it('Param "zipcode" should be passed', function(done) {
-      expect(reply.params.payment.zipcode).to.be.equal(direct.zipcode);
+      expect(reply.payment.zipcode).to.be.equal(direct.payment.zipcode);
       done();  
     })
 
     it('Param "state" should be passed', function(done) {
-      expect(reply.params.payment.state).to.be.equal(direct.state);
+      expect(reply.payment.state).to.be.equal(direct.payment.state);
       done();  
     })
 
     it('Param "city" should be passed', function(done) {
-      expect(reply.params.payment.city).to.be.equal(direct.city);
+      expect(reply.payment.city).to.be.equal(direct.payment.city);
       done();  
     })
 
     it('Param "street_number" should be passed', function(done) {
-      expect(reply.params.payment.street_number).to.be.equal(direct.street_number);
+      expect(reply.payment.street_number).to.be.equal(direct.payment.street_number);
       done();  
     })
 
     it('Param "address" should be passed', function(done) {
-      expect(reply.params.payment.address).to.be.equal(direct.address);
+      expect(reply.payment.address).to.be.equal(direct.payment.address);
       done();  
     })
 
     it('Param "document" should be passed', function(done) {
-      expect(reply.params.payment.document).to.be.equal(direct.document);
+      expect(reply.payment.document).to.be.equal(direct.payment.document);
       done();  
     })
 
     it('Param "birth_date" should be passed', function(done) {
-      expect(reply.params.payment.birth_date).to.be.equal(direct.birth_date);
+      expect(reply.payment.birth_date).to.be.equal(direct.payment.birth_date);
       done();  
     })
 
     it('Param "email" should be passed', function(done) {
-      expect(reply.params.payment.email).to.be.equal(direct.email);
+      expect(reply.payment.email).to.be.equal(direct.payment.email);
       done();  
     })
 
     it('Param "name" should be passed', function(done) {
-      expect(reply.params.payment.name).to.be.equal(direct.name);
+      expect(reply.payment.name).to.be.equal(direct.payment.name);
       done();  
     })
 
     it('Param "payment_type_code" should be passed', function(done) {
-      expect(reply.params.payment.payment_type_code).to.be.equal(direct.payment_type_code);
+      expect(reply.payment.payment_type_code).to.be.equal(direct.payment.payment_type_code);
       done();  
     })
 
     it('Param "amount_total" should be passed', function(done) {
-      expect(reply.params.payment.amount_total).to.be.equal(direct.amount_total);
+      expect(reply.payment.amount_total).to.be.equal(direct.payment.amount_total);
       done();  
     })
   })

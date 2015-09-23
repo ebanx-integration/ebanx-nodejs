@@ -4,3 +4,4 @@ tests/integration_key
 lib-cov/
 .coveralls.yml
 npm-debug.log
+teste.js

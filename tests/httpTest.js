@@ -38,22 +38,25 @@ describe('HTTP Client test', function() {
 
   it('Should test direct method', function(done) {
     var direct = {
-      name : "carlos test",
-      email : "carlos@test.com",
-      birth_date : "12/04/1979",
-      document : "853.513.468.93",
-      address : "Rua e",
-      street_number : "1040",
-      city : "Curitiba",
-      state : "PR",
-      zipcode : "82530000",
-      country : "br",
-      phone_number : "32329913",
-      payment_type_code : "itau",
-      merchant_payment_code : "123141dafefesf",
-      currency_code : "BRL",
-      amount_total : 423.00
-    }
+      payment : {
+        name : "carlos test",
+        email : "carlos@test.com",
+        birth_date : "12/04/1979",
+        document : "853.513.468.93",
+        address : "Rua e",
+        street_number : "1040",
+        city : "Curitiba",
+        state : "PR",
+        zipcode : "82530000",
+        country : "br",
+        phone_number : "32329913",
+        payment_type_code : "itau",
+        merchant_payment_code : "123141dafefesf",
+        currency_code : "BRL",
+        amount_total : 423.00        
+      }
+    };
+    
     eb.direct (direct, function(err, reply) {
       should.not.exist(err);
       should.exist(reply);

@@ -43,37 +43,37 @@ describe('Request Operation With Hash', function() {
     })
 
     it('Params should have name', function(done) {
-      expect(reply.params).to.have.property("name");
+      expect(reply).to.have.property("name");
       done();  
     })
 
     it('Params should have email', function(done) {
-      expect(reply.params).to.have.property("email");
+      expect(reply).to.have.property("email");
       done();  
     })
 
     it('Params should have country', function(done) {
-      expect(reply.params).to.have.property("country");
+      expect(reply).to.have.property("country");
       done();  
     })
 
     it('Params should have payment_type_code', function(done) {
-      expect(reply.params).to.have.property("payment_type_code");
+      expect(reply).to.have.property("payment_type_code");
       done();  
     })
 
     it('Params should have merchant_payment_code', function(done) {
-      expect(reply.params).to.have.property("merchant_payment_code");
+      expect(reply).to.have.property("merchant_payment_code");
       done();  
     })
 
     it('Params should have currency_code', function(done) {
-      expect(reply.params).to.have.property("currency_code");
+      expect(reply).to.have.property("currency_code");
       done();  
     })
 
     it('Params should have amount', function(done) {
-      expect(reply.params).to.have.property("amount");
+      expect(reply).to.have.property("amount");
       done();  
     })
   })

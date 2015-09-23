@@ -38,12 +38,12 @@ describe('RefundOrCancel Operation', function() {
     })
 
     it('Params should have hash', function(done) {
-      expect(reply.params).to.have.property("hash");
+      expect(reply).to.have.property("hash");
       done();  
     })
 
     it('Params should have description', function(done) {
-      expect(reply.params.description).to.be.equal(refund.description);
+      expect(reply.description).to.be.equal(refund.description);
       done();  
     })
   })

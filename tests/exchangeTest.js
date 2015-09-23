@@ -36,12 +36,12 @@ describe('Exchange Operation', function() {
     })
 
     it('Param must have currency_code', function(done) {
-      expect(reply.params).to.have.property("currency_code");
+      expect(reply).to.have.property("currency_code");
       done();  
     })
 
     it('Param must have currency_base', function(done) {
-      expect(reply.params).to.have.property("currency_base");
+      expect(reply).to.have.property("currency_base");
       done();  
     })
   })

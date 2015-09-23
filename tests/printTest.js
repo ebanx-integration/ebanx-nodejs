@@ -35,7 +35,7 @@ describe('Print Operation', function() {
     })
 
     it('Param must have hash', function(done) {
-      expect(reply.params).to.have.property("hash");
+      expect(reply).to.have.property("hash");
       done();  
     })
   })

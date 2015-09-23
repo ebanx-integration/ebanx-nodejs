@@ -40,22 +40,22 @@ describe('Refund Operation', function() {
     })
 
     it('Params should have hash', function(done) {
-      expect(reply.params).to.have.property("hash");
+      expect(reply).to.have.property("hash");
       done();  
     })
 
     it('Params should have description', function(done) {
-      expect(reply.params).to.have.property("description");
+      expect(reply).to.have.property("description");
       done();  
     })
 
     it('Params should have amount', function(done) {
-      expect(reply.params).to.have.property("amount");
+      expect(reply).to.have.property("amount");
       done();  
     })
 
     it('Params should have operation', function(done) {
-      expect(reply.params).to.have.property("operation");
+      expect(reply).to.have.property("operation");
       done();  
     })
   })
@@ -71,7 +71,7 @@ describe('Refund Operation Cancel', function() {
   };
   eb.refund (refund, function(err, reply) {
     it('Should test operation', function(done) {
-      expect(reply.params).to.have.property("refund_id");
+      expect(reply).to.have.property("refund_id");
       done();  
     })
   })

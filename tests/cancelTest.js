@@ -35,7 +35,7 @@ describe('Cancel Operation', function() {
     })
 
     it('Params must be hash', function(done) {
-      expect(reply.params).to.have.property("hash");
+      expect(reply).to.have.property("hash");
       done();  
     })
   })
