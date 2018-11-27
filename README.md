@@ -99,6 +99,7 @@ ebanx.request(params, function(error, reply) {
 ```
 
 ## Changelog
+* **1.6.0**: New api endpoints.
 * **1.5.0**: Implemented dynamic object construction for request
 * **1.4.1**: Corrected indentation
 * **1.4.0**: Added documentBalance operation

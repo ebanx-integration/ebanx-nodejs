@@ -21,10 +21,10 @@ exports.testTestMode = function(test) {
 };
 
 exports.testEndPoint = function(test) {
-	test.equal( utils.getEndPoint(), "https://sandbox.ebanx.com/");
+	test.equal( utils.getEndPoint(), "https://sandbox.ebanxpay.com/");
 	eb.configure({
 	  testMode : false
     });
-	test.equal( utils.getEndPoint(), "https://api.ebanx.com/");
+	test.equal( utils.getEndPoint(), "https://api.ebanxpay.com/");
 	test.done();
 };
