@@ -25,11 +25,11 @@ describe('Configuration', function() {
   })
 
   it('EndPoint return for testMode false and true', function(done) {
-    expect(utils.getEndPoint()).to.be.equal("https://sandbox.ebanx.com/");
+    expect(utils.getEndPoint()).to.be.equal("https://sandbox.ebanxpay.com/");
     eb.configure({
       testMode : false
     })
-    expect(utils.getEndPoint()).to.be.equal("https://api.ebanx.com/");
+    expect(utils.getEndPoint()).to.be.equal("https://api.ebanxpay.com/");
     done();   
   })
 });
