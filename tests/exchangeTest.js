@@ -13,7 +13,7 @@ eb.configure({
 
 eb.settings.usingHttp = false;
 
-var currency = {currency_code : "USD", currency_base : "BRL"};
+var currency = {currency_code : "USD", currency_base_code : "BRL"};
 
 var should = require('chai').should();
 var expect = require('chai').expect;
